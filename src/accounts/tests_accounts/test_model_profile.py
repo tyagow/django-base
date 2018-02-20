@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import resolve_url
 from django.test import TestCase
 
-
+@skip
 class ProfileModelTest(TestCase):
     """    """
     def setUp(self):
