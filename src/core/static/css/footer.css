@@ -16,9 +16,9 @@
 }
 
 footer {
-    padding: 45px;
-    padding-top: 40px;
+    padding: 40px 45px 45px;
     background-color: #e0e0e3;
+    margin-top: 20px!important;
 }
 
 footer h4, footer h6 {
