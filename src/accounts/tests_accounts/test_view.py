@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import resolve_url as r
 from django.test import TestCase
 
@@ -22,5 +23,29 @@ class LoginTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use index.html"""
+        """Must use registration/login.html"""
         self.assertTemplateUsed(self.response, 'registration/login.html')
+
+
+class SettingsTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            "user123",
+            "user@example.com",
+            "password123")
+
+    def test_get(self):
+        self.assertTrue(self.client.login(username='user123', password='password123'))
+
+        self.response = self.client.get(r('accounts:settings'))
+
+        self.assertEqual(200, self.response.status_code)
+
+    def test_template(self):
+        """Must use registration/settings.html"""
+
+        self.assertTrue(self.client.login(username='user123', password='password123'))
+
+        self.response = self.client.get(r('accounts:settings'))
+        self.assertTemplateUsed(self.response, 'accounts/settings.html')
+
