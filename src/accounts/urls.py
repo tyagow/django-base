@@ -7,6 +7,8 @@ from src.accounts.views import (
 )
 from django.contrib.auth import views as auth_views
 
+app_name = 'accounts'
+
 urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
